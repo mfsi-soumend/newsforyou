@@ -1,4 +1,4 @@
-package com.newsforyou.newsservice.configurations;
+package com.newsforyou.agencyservice.configurations;
 
 /**
  * A class containing constants used throughout the application.
@@ -22,9 +22,8 @@ public class Constants {
 	public static final int ERROR_STATUS = 500;
 	public static final int UNAUTHORIZED = 403;
 	
-	
-	public static final String NEWS_CREATED = "News Successfully published";
 	public static final String INVALID_REQUEST = "Invalid Request";
 	public static final String INTERNAL_SERVER_ERROR = "Internal server error !!";
-	public static final String NEWS_LINK_STARTER = "http://localhost:3000/news/";
+	public static final String EMPTY_DATA_ERROR = "All Fields are required!!";
+	public static final String NO_CATEGORY_FOUND = "No Category Found!!";
 }

@@ -50,6 +50,6 @@
 	<modules>
 		<module>user-service</module>
 		<module>agency-service</module>
-		<module>news-and-catagory-service</module>
+		<module>news-and-category-service</module>
 	</modules>
 </project>
