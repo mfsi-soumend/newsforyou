@@ -2,6 +2,8 @@ package com.newsforyou.newsservice.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.newsforyou.newsservice.configurations.Constants;
@@ -24,6 +26,8 @@ public class NewsServiceImp implements NewsService {
 	private final NewsRepository newsRepo;
 	private final CategoryRepository categoryRepo;
 	private final WebClient webClient;
+	@Value("${agency_service_url}")
+	private String agencyServiceUrl;
 	
 	@Override
 	public void createNews(NewsRequest newsRequest) {
@@ -35,6 +39,20 @@ public class NewsServiceImp implements NewsService {
 		}
 		if (!categoryRepo.findById(newsRequest.getCategoryId()).isPresent()) {
 			throw new InvalidRequestException(Constants.NO_CATEGORY_FOUND);
+		}
+		boolean checkAgency = false;
+ 		try {
+			checkAgency = webClient.get()
+				.uri(agencyServiceUrl + "available/" + newsRequest.getAgencyId())
+				.retrieve()
+				.bodyToMono(boolean.class)
+				.block();
+		}
+		catch (Exception e) {
+			throw new InvalidRequestException(Constants.AGENCY_SERVER_DOWN);
+		}
+		if(!checkAgency) {
+			throw new InvalidRequestException(Constants.NO_AGENCY_FOUND);
 		}
 		try {
 			News newNews = News.builder()

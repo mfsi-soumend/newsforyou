@@ -26,4 +26,7 @@ public class Constants {
 	public static final String INTERNAL_SERVER_ERROR = "Internal server error !!";
 	public static final String EMPTY_DATA_ERROR = "All Fields are required!!";
 	public static final String NO_CATEGORY_FOUND = "No Category Found!!";
+	public static final String AGENCY_CREATED = "New Agency Created!!";
+	public static final String AGENCY_ALREADY_EXSISTS = "Agency with same name already exists!!";
+	public static final String NO_AGENCY_FOUND = "No Agency Found!!";
 }

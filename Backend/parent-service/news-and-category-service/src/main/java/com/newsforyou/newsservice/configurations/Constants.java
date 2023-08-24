@@ -31,4 +31,6 @@ public class Constants {
 	public static final String CATEGORY_ALREADY_EXSISTS = "Category already exists!!";
 	public static final String EMPTY_DATA_ERROR = "All Fields are required!!";
 	public static final String NO_CATEGORY_FOUND = "No Category Found!!";
+	public static final String NO_AGENCY_FOUND = "No Agency Found!!";
+	public static final String AGENCY_SERVER_DOWN = "Agency Server Down!! Please Contact Admin..";
 }
