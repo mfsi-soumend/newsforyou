@@ -25,7 +25,7 @@ public class AgencyFeedServiceImp implements AgencyFeedService {
 	
 	private final AgencyFeedRepository agencyFeedRepo;
 	private final AgencyService agencyService;
-	private final WebClient webClient;
+	private final WebClient.Builder webClientbuilder;
 	@Value("${category_service_url}")
 	private String categoryServiceUrl;
 	
@@ -43,7 +43,7 @@ public class AgencyFeedServiceImp implements AgencyFeedService {
 		}
 		boolean checkCategory = false;
  		try {
- 			checkCategory = webClient.get()
+ 			checkCategory = webClientbuilder.build().get()
 				.uri(categoryServiceUrl + "available/" + agencyFeedRequest.getCategoryId())
 				.retrieve()
 				.bodyToMono(boolean.class)
