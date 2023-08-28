@@ -68,11 +68,11 @@ public class AgencyServiceImp implements AgencyService {
 		List<Agency> allAgency = agencyRepo.findAll();
 		return AgencyResponseList.builder()
 				.totalAgencyCount(allAgency.size())
-				.agencyResponseList(allAgency.stream().map(this::mapToCategoryList).toList())
+				.agencyResponseList(allAgency.stream().map(this::mapToAgencyList).toList())
 				.build();
 	}
 	
-	private AgencyResponse mapToCategoryList(Agency agency) {
+	private AgencyResponse mapToAgencyList(Agency agency) {
 		return AgencyResponse.builder()
 				.agencyName(agency.getAgencyName())
 				.agencyId(agency.getAgencyId())

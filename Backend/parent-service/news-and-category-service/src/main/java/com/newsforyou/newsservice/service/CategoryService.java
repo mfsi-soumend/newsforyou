@@ -8,4 +8,6 @@ public interface CategoryService {
 	public void createCategory(CategoryRequest categoryRequest);
 	
 	public CategoryResponseList getAllCategory();
+
+	public boolean checkCategoryAvailable(String categoryId);
 }

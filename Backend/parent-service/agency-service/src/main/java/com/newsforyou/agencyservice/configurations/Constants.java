@@ -29,4 +29,9 @@ public class Constants {
 	public static final String AGENCY_CREATED = "New Agency Created!!";
 	public static final String AGENCY_ALREADY_EXSISTS = "Agency with same name already exists!!";
 	public static final String NO_AGENCY_FOUND = "No Agency Found!!";
+	public static final String AGENCY_FEED_CREATED = "New Agency Feed Created!!";
+	public static final String AGENCY_FEED_ALREADY_EXSISTS = "Agency feed with same agency and category already exists!!";
+	public static final String CATEGORY_SERVER_DOWN = "Category Server Down!! Please Contact Admin..";
+	public static final String AGENCY_FEED_LINK_STARTER = "http://localhost:3000/agency-feed/";
+	public static final String NO_AGENCY_FEED_FOUND = "No Agency Feed Found!!";
 }

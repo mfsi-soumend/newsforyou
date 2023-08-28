@@ -1,9 +1,8 @@
 package com.newsforyou.newsservice.service.impl;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.stereotype.Service;
-
 import com.newsforyou.newsservice.configurations.Constants;
 import com.newsforyou.newsservice.dto.CategoryRequest;
 import com.newsforyou.newsservice.dto.CategoryResponse;
@@ -58,6 +57,20 @@ public class CategoryServiceImp implements CategoryService {
 				.categoryTitle(category.getCategoryTitle())
 				.categoryId(category.getCategoryId())
 				.build();
+	}
+
+	@Override
+	public boolean checkCategoryAvailable(String categoryId) {
+		if(categoryId == null || categoryId.isBlank()) {
+			return false;
+		}
+		Optional<Category> findById = categoryRepo.findById(categoryId);
+		if(findById.isPresent()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

@@ -3,9 +3,11 @@ package com.newsforyou.newsservice.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.newsforyou.newsservice.configurations.Constants;
 import com.newsforyou.newsservice.dto.CategoryRequest;
@@ -51,5 +53,11 @@ public class CategoryController {
 		catch (Exception e) {
 			return ge.handleInvalidRequestException(new InvalidRequestException(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/available/{category-id}")
+	public boolean checkCategoryAvailable(@PathVariable("category-id") String categoryId) {
+		return categoryService.checkCategoryAvailable(categoryId);
 	}
 }
