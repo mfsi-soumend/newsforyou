@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
+import Routes from "./js/routes/Routes";
 import "./App.css";
 
 function App() {
-  return <div className="App">News For You</div>;
+  return <Routes />;
 }
 
 export default App;

@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Poppins:wght@200;400;500&display=swap');
+
+#root, #footer-bar {
+  font-family: 'Montserrat', sans-serif !important;
+}
+.logo {
+  color: aliceblue;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.user-profile {
+  background-color: aliceblue;
+}
+.user-profile:hover {
+  background-color: aquamarine;
+}
+.filter-card {
+  border-radius: 0px;
+  height: 100%;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: 2px solid #f0f0f0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.filter-card .ant-card-body {
+  padding-top: 0px !important;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.category-filter-wrapper {
+  max-height: 70vh;
+  overflow-y: auto;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.category-filter {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.category-filter .ant-checkbox-group-item {
+  font-family: 'Montserrat', sans-serif !important;
+  margin: 5px 0 0 0;
+}
+.category-title {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
-.App-link {
-  color: #61dafb;
+.news-wrapper-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400;
+}
+.news-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.news-card {
+  max-width: 300px;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.news-title{
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.news-description {
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif !important;
+  max-height: 4em; /* Set line height multiplied by max lines */
+  overflow: hidden;
+  line-height: 1.2em; /* Set desired line height */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
