@@ -4,7 +4,7 @@ import { Button } from "antd";
 import React, { useState } from "react";
 
 function HeaderBar() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   return (
     <Header
       style={{
@@ -13,7 +13,14 @@ function HeaderBar() {
         justifyContent: "space-between",
       }}
     >
-      <div className="logo">NewsForYou</div>
+      <div
+        className="logo"
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
+        NewsForYou
+      </div>
       {user ? (
         <Button
           type="secondary"
@@ -25,11 +32,15 @@ function HeaderBar() {
       ) : (
         <Button
           type="secondary"
-          shape="circle"
           className="user-profile"
           icon={<LoginOutlined />}
           size={30}
-        />
+          onClick={() => {
+            window.location.href = "/login";
+          }}
+        >
+          Login{" "}
+        </Button>
       )}
     </Header>
   );

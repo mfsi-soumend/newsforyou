@@ -10,6 +10,7 @@ import PageNotFound from "../pageNotFound/PageNotFound";
 import HeaderBar from "../components/HeaderBar";
 import FooterBar from "../components/FooterBar";
 import { Layout } from "antd";
+import Login from "../login/Login";
 
 function Routes() {
   return (
@@ -19,6 +20,8 @@ function Routes() {
         <Switch>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/pageNotFound" element={<PageNotFound />} />
+          <Route exact path="/news/:id" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/pageNotFound" />} />
         </Switch>
         <FooterBar />

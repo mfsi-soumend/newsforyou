@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, theme } from "antd";
 import SideBar from "../components/SideBar";
 import News from "../news/News";
+import NewsPage from "../components/NewsPage";
+import { useNavigate, useParams } from "react-router-dom";
 const { Content } = Layout;
 
 const Home = () => {
+  const navigate = useNavigate();
+  let { id } = useParams();
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const onCategoryChange = (values) => {
+    localStorage.setItem("selectedCategories", values);
+    setSelectedCategories(values);
+    navigate("/");
+  };
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
     <Content style={{ padding: "0 50px" }}>
       <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
-        <SideBar colorBgContainer={colorBgContainer} />
+        <SideBar
+          colorBgContainer={colorBgContainer}
+          onCategoryChange={onCategoryChange}
+        />
         <Content style={{ padding: "0 24px", minHeight: 280 }}>
-          <div className="news-wrapper-title">News</div>
-          <News />
+          {id ? (
+            <NewsPage id={id} />
+          ) : (
+            <>
+              <div className="news-wrapper-title">News</div>
+              <News selectedCategories={selectedCategories} />
+            </>
+          )}
         </Content>
       </Layout>
     </Content>

@@ -2,8 +2,10 @@ package com.newsforyou.newsservice.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.newsforyou.newsservice.configurations.Constants;
@@ -74,8 +76,9 @@ public class NewsServiceImp implements NewsService {
 	}
 
 	@Override
-	public NewsResponseList getAllNews() {
-		List<News> allNews = newsRepo.findAll();
+	public NewsResponseList getAllNews(List<String> categoryIds) {
+		Sort sort = Sort.by(Sort.Direction.DESC, "newsPublishDateTime");
+		List<News> allNews = newsRepo.findByCategoryIdIn(categoryIds, sort);
 		return NewsResponseList.builder()
 				.totalNewsCount(allNews.size())
 				.newsList(allNews.stream().map(this::mapToNewsList).toList())
@@ -93,6 +96,22 @@ public class NewsServiceImp implements NewsService {
 				.newsPublishDateTime(news.getNewsPublishDateTime())
 				.newsLink(news.getNewsLink())
 				.build();
+	}
+
+	@Override
+	public NewsResponse getNews(String newsId) {
+		if(newsId == null || newsId.isBlank()) {
+			throw new InvalidRequestException(Constants.EMPTY_DATA_ERROR);
+		}
+		Optional<News> findById = newsRepo.findById(newsId);
+		if(findById.isPresent()) {
+			News news = findById.get();
+			news.setCategoryId(categoryRepo.findById(news.getCategoryId()).get().getCategoryTitle());
+			return mapToNewsList(findById.get());
+		}
+		else {
+			throw new InvalidRequestException(Constants.NO_NEWS_FOUND);
+		}
 	}
 
 }

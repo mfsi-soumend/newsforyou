@@ -33,4 +33,5 @@ public class Constants {
 	public static final String NO_CATEGORY_FOUND = "No Category Found!!";
 	public static final String NO_AGENCY_FOUND = "No Agency Found!!";
 	public static final String AGENCY_SERVER_DOWN = "Agency Server Down!! Please Contact Admin..";
+	public static final String NO_NEWS_FOUND = "No News Found !!";
 }

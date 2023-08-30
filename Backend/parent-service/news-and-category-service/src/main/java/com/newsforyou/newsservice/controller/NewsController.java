@@ -1,13 +1,17 @@
 package com.newsforyou.newsservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.newsforyou.newsservice.configurations.Constants;
 import com.newsforyou.newsservice.dto.NewsRequest;
+import com.newsforyou.newsservice.dto.NewsResponse;
 import com.newsforyou.newsservice.dto.NewsResponseList;
+import com.newsforyou.newsservice.dto.SearchNewsRequest;
 import com.newsforyou.newsservice.exception.InvalidRequestException;
 import com.newsforyou.newsservice.exception.handler.GlobalExceptionHandler;
 import com.newsforyou.newsservice.model.SingleResponse;
@@ -38,11 +42,24 @@ public class NewsController {
 		}
 	}
 	
-	@GetMapping("/all-news")
-	public ResponseEntity<Object> getAllNews() {
+	@PutMapping("/all-news")
+	public ResponseEntity<Object> getAllNews(@RequestBody SearchNewsRequest searchNewsRequest) {
 		SingleResponse<NewsResponseList> resp = new SingleResponse<>();
 		try {
-			NewsResponseList res = newsService.getAllNews();
+			NewsResponseList res = newsService.getAllNews(searchNewsRequest.getCategoryIds());
+			resp.setSuccess(true);
+			resp.setData(res);
+			return resp.generateResponse(HttpStatus.OK);
+		}
+		catch (Exception e) {
+			return ge.handleInvalidRequestException(new InvalidRequestException(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/{news_id}")
+	public ResponseEntity<Object> getNews(@PathVariable("news_id") String newsId) {
+		SingleResponse<NewsResponse> resp = new SingleResponse<>();
+		try {
+			NewsResponse res = newsService.getNews(newsId);
 			resp.setSuccess(true);
 			resp.setData(res);
 			return resp.generateResponse(HttpStatus.OK);

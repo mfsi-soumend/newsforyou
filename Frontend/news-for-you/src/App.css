@@ -1,15 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Poppins:wght@200;400;500&display=swap');
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif !important; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+}
 
 #root, #footer-bar {
   font-family: 'Montserrat', sans-serif !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner, .ant-checkbox-checked .ant-checkbox-inner:hover {
+  background-color: #3f3f3f !important;
+  border-color: #3f3f3f !important;
+}
+input.ant-input , .login-input input{
+  background-color: #fafbfc !important;
+  font-size: 14px !important;
+  font-family: 'Poppins-Light', 'Poppins Light', 'Poppins', sans-serif !important;
+  font-weight: 200;
+}
+.ant-form-item-explain-error{
+  color: #c04040 !important;
+  font-family: "Poppins-Light", "Poppins Light", "Poppins", sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 14px !important;
+  line-height: 19px !important;
+}
+.ant-input-status-error,.ant-select-status-error,
+:where(.css-dev-only-do-not-override-1s3dcof).ant-input-affix-wrapper-status-error:not(:where(.css-dev-only-do-not-override-1s3dcof).ant-input-affix-wrapper-disabled):not(:where(.css-dev-only-do-not-override-1s3dcof).ant-input-affix-wrapper-borderless):where(.css-dev-only-do-not-override-1s3dcof).ant-input-affix-wrapper,
+:where(.css-dev-only-do-not-override-1s3dcof).ant-input-status-error:not(:where(.css-dev-only-do-not-override-1s3dcof).ant-input-disabled):not(:where(.css-dev-only-do-not-override-1s3dcof).ant-input-borderless):where(.css-dev-only-do-not-override-1s3dcof).ant-input {
+  margin-bottom: 10px !important;
+}
+.ant-form-item-label label {
+  font-family: "Poppins-Regular", "Poppins", sans-serif !important;
+  color: #666666 !important;
+}
+.ant-checkbox-group-item:hover .ant-checkbox-inner{
+  border-color: #3f3f3f !important;
 }
 .logo {
   color: aliceblue;
   font-size: 30px;
   font-family: 'Montserrat', sans-serif !important;
+  cursor: pointer;
 }
 .user-profile {
   background-color: aliceblue;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 16px;
 }
 .user-profile:hover {
   background-color: aquamarine;
@@ -37,6 +78,11 @@
 .category-filter .ant-checkbox-group-item {
   font-family: 'Montserrat', sans-serif !important;
   margin: 5px 0 0 0;
+  font-size: 16px !important;
+  color: #3f3f3f;
+}
+.category-filter .ant-checkbox-group-item:hover, .category-filter .ant-checkbox-wrapper-checked {
+  font-weight: 500;
 }
 .category-title {
   font-size: 15px;
@@ -45,6 +91,7 @@
 }
 
 .news-wrapper-title {
+  color: #3f3f3f;
   font-size: 30px;
   margin-bottom: 20px;
   font-family: 'Montserrat', sans-serif !important;
@@ -55,22 +102,102 @@
   flex-wrap: wrap;
 }
 .news-card {
-  max-width: 300px;
+  max-width: 350px;
   margin-right: 15px;
   margin-bottom: 15px;
+  cursor: pointer;
+}
+.news-card:hover {
+  box-shadow: 0 0 15px  #f0f0f0;
+  margin-top: -2px;
 }
 
 .news-title{
-  font-size: 24px;
+  font-size: 1.7em;
+  line-height: 1.2em;
   font-family: 'Montserrat', sans-serif !important;
-}
-.news-description {
-  font-size: 14px;
-  font-family: 'Montserrat', sans-serif !important;
-  max-height: 4em; /* Set line height multiplied by max lines */
+  margin-bottom: 15px;
+  max-height: 3.6em; 
   overflow: hidden;
-  line-height: 1.2em; /* Set desired line height */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+.news-description {
+  color: #3f3f3f;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif !important;
+  max-height: 4.5em; /* Set line height multiplied by max lines */
+  overflow: hidden;
+  line-height: 1.5em; /* Set desired line height */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.posted-on {
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px;
+}
+.posted-on span {
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14px !important;
+}
+
+.news-page-title {
+  font-size: 32px;
+  max-width: 80%;
+  margin: 20px 0 50px 20px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.news-page-description {
+  border-left: 3px solid #1cdafc;
+  padding-left: 20px;
+  font-size: 20px;
+  max-width: 80%;
+  line-height: 1.5em;
+  word-spacing: .7em;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.news-tags {
+  margin: 20px 0 20px 20px;
+}
+
+.news-page-tags {
+  font-size: 16px;
+  padding: 0 15px 5px 15px !important;
+}
+
+.login-page {
+  height: 82vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+.login-title {
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif !important;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-card {
+  width: 450px;
+  padding: 0 20px;
+  box-shadow: 0 0 15px  #dcdcdc;
+}
+
+.login-button {
+  margin-top: 15px;
+  padding: 4px 15px;
+}
+.login-button:hover {
+  box-shadow: 5px 5px 0  #dcdcdc;
+  padding: 5px 18px;  
 }
