@@ -201,3 +201,6 @@ input.ant-input , .login-input input{
   box-shadow: 5px 5px 0  #dcdcdc;
   padding: 5px 18px;  
 }
+.news-container {
+  min-height: 67vh;
+}

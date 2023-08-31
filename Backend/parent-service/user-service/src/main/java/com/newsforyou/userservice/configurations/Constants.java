@@ -25,4 +25,7 @@ public class Constants {
 	public static final String INVALID_REQUEST = "Invalid Request";
 	public static final String INTERNAL_SERVER_ERROR = "Internal server error !!";
 	public static final String EMPTY_DATA_ERROR = "All Fields are required!!";
+	public static final String USER_CREATED = "New User Successfully Registered !!";
+	public static final String USER_ALREADY_EXSISTS = "User is already registered !! Please try login..";
+	public static final String INCORRECT_CREDENTIALS = "Incorrect Credentials!!";
 }

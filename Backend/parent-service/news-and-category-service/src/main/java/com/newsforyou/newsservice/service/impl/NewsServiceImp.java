@@ -78,7 +78,7 @@ public class NewsServiceImp implements NewsService {
 	@Override
 	public NewsResponseList getAllNews(List<String> categoryIds) {
 		Sort sort = Sort.by(Sort.Direction.DESC, "newsPublishDateTime");
-		List<News> allNews = newsRepo.findByCategoryIdIn(categoryIds, sort);
+		List<News> allNews = categoryIds.size()!=0? newsRepo.findByCategoryIdIn(categoryIds, sort):newsRepo.findAll(sort);
 		return NewsResponseList.builder()
 				.totalNewsCount(allNews.size())
 				.newsList(allNews.stream().map(this::mapToNewsList).toList())
