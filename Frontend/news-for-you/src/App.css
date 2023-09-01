@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Poppins:wght@200;400;500&display=swap');
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif !important; 
@@ -14,10 +15,10 @@ body {
 
 .ant-checkbox-checked .ant-checkbox-inner, .ant-checkbox-checked .ant-checkbox-inner:hover {
   background-color: #3f3f3f !important;
-  border-color: #3f3f3f !important;
+  border-color: #f0f8ff87 !important;
 }
 input.ant-input , .login-input input{
-  background-color: #fafbfc !important;
+  background-color: #fff !important;
   font-size: 14px !important;
   font-family: 'Poppins-Light', 'Poppins Light', 'Poppins', sans-serif !important;
   font-weight: 200;
@@ -51,6 +52,7 @@ input.ant-input , .login-input input{
   background-color: aliceblue;
   font-family: 'Montserrat', sans-serif !important;
   font-size: 16px;
+  transition: all 0.2s ease-in-out;
 }
 .user-profile:hover {
   background-color: aquamarine;
@@ -62,10 +64,12 @@ input.ant-input , .login-input input{
   border-bottom: none !important;
   border-left: none !important;
   border-right: 2px solid #f0f0f0;
+  background: #fff0;
 }
 
 .filter-card .ant-card-body {
   padding-top: 0px !important;
+  padding-right: 0px !important;
 }
 .category-filter-wrapper {
   max-height: 70vh;
@@ -106,9 +110,12 @@ input.ant-input , .login-input input{
   margin-right: 15px;
   margin-bottom: 15px;
   cursor: pointer;
+  background: #ffffff87 !important;
+  border: 2px solid #fff;
+  transition: .2s ease-in-out;
 }
-.news-card:hover {
-  box-shadow: 0 0 15px  #f0f0f0;
+.news-card:hover, .agency-card:hover {
+  box-shadow: 0 0 15px #8ec3f1;
   margin-top: -2px;
 }
 
@@ -177,7 +184,7 @@ input.ant-input , .login-input input{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #f5f5f5;
 }
 .login-title {
   font-size: 24px;
@@ -191,6 +198,8 @@ input.ant-input , .login-input input{
   width: 450px;
   padding: 0 20px;
   box-shadow: 0 0 15px  #dcdcdc;
+  background: #ffffff87 !important;
+  border: 2px solid #fff;
 }
 
 .login-button {
@@ -203,4 +212,105 @@ input.ant-input , .login-input input{
 }
 .news-container {
   min-height: 67vh;
+}
+
+.ant-tabs .ant-tabs-nav {
+  min-width: 200px !important;
+}
+.ant-tabs-tab {
+  padding-left: 24px ;
+  font-family: 'Montserrat', sans-serif !important;
+  margin: 5px 0 0 0;
+  font-size: 16px !important;
+  color: #3f3f3f;
+  transition: 0.4s ease-in-out all;
+}
+
+.ant-tabs-tab-active {
+  padding-left: 4px !important ;
+  border-radius: 50px 0 0 50px;
+  border-left: 30px solid #1678fe !important;
+  border-right: 5px solid #1678fe !important;
+  transition: 0.4s ease-in-out all;
+}
+.ant-tabs-tab-active span {
+  transition: 0.4s ease-in-out all;
+  margin-left: -14px !important;
+}
+
+.admin-right-section-title {
+  color: #3f3f3f;
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400;
+}
+
+.category-tag-wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 25px;
+  row-gap: 25px;
+}
+
+.category-tag {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-left-width: 10px !important;
+  border-right-width: 10px !important;
+  border-radius: 20px 0 20px 0;
+  border: 2px solid #1678fe;
+  background-color: #ffffff87 !important;
+  transition: .1s ease-in-out;
+}
+.category-tag:hover {
+  box-shadow: 0 0 15px #8ec3f1;
+  border-radius: 0;
+  cursor: pointer;
+}
+.add-category {
+  margin-top: 50px;
+  max-width: 300px;
+}
+
+.agency-card-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+.agency-card {
+  position: relative;
+  width: 300px;
+  text-align: center;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  background: #ffffff87 !important;
+  border: 2px solid #fff;
+  transition: all .2s ease-in-out;
+  box-shadow: 0 0 15px  #dcdcdc;
+}
+
+.agency-name {
+  color: #3f3f3f;
+  font-size: 20px;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400;
+}
+
+.agency-logo img {
+  max-width: 100%;
+  max-height: 100px;
+}
+.add-agency-title{
+  color: #3f3f3f;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400;
+}
+.agency-update-logo {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }

@@ -21,10 +21,12 @@ import com.newsforyou.userservice.model.SingleResponse;
 import com.newsforyou.userservice.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 	private final UserService userService;
 	private final GlobalExceptionHandler ge;
@@ -49,9 +51,11 @@ public class UserController {
 		Authentication authenticate = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getEmail(), loginReq.getPassword()));
         if (authenticate.isAuthenticated()) {
         	SingleResponse<String> resp = new SingleResponse<>();
-        	resp.setData(userService.generateToken(loginReq.getEmail()));
+        	String token =userService.generateToken(loginReq.getEmail());
+        	log.info(token);
+        	resp.setData(token);
 			resp.setSuccess(true);
-            return resp.generateResponse(HttpStatus.CREATED);
+            return resp.generateResponse(HttpStatus.OK);
         } else {
         	return ge.handleInvalidRequestException(new InvalidRequestException(Constants.INCORRECT_CREDENTIALS), HttpStatus.BAD_REQUEST);
         }

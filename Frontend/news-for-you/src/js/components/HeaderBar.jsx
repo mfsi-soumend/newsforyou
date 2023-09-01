@@ -1,10 +1,41 @@
 import { Header } from "antd/es/layout/layout";
 import { UserOutlined, LoginOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-import React, { useState } from "react";
+import { Button, Dropdown } from "antd";
+import React from "react";
 
 function HeaderBar() {
-  const [user, setUser] = useState(false);
+  const items = [
+    {
+      key: "0",
+      label: (
+        <a rel="noopener noreferrer" href="/admin/dashboard">
+          Dashboard
+        </a>
+      ),
+    },
+    {
+      key: "1",
+      label: (
+        <a rel="noopener noreferrer" href="/admin/profile">
+          Profile
+        </a>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <a
+          rel="noopener noreferrer"
+          onClick={() => {
+            localStorage.removeItem("adminUserToken");
+            window.location.href = "/";
+          }}
+        >
+          Logout
+        </a>
+      ),
+    },
+  ];
   return (
     <Header
       style={{
@@ -21,14 +52,21 @@ function HeaderBar() {
       >
         NewsForYou
       </div>
-      {user ? (
-        <Button
-          type="secondary"
-          shape="circle"
-          className="user-profile"
-          icon={<UserOutlined />}
-          size={30}
-        />
+      {localStorage.getItem("adminUserToken") ? (
+        <Dropdown
+          menu={{
+            items,
+          }}
+          placement="bottomRight"
+        >
+          <Button
+            type="secondary"
+            shape="circle"
+            className="user-profile"
+            icon={<UserOutlined />}
+            size={30}
+          />
+        </Dropdown>
       ) : (
         <Button
           type="secondary"

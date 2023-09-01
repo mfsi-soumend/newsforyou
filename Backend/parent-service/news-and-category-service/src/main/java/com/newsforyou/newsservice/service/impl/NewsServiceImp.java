@@ -106,6 +106,8 @@ public class NewsServiceImp implements NewsService {
 		Optional<News> findById = newsRepo.findById(newsId);
 		if(findById.isPresent()) {
 			News news = findById.get();
+			news.setClickCount(news.getClickCount()+1);
+			news = newsRepo.save(news);
 			news.setCategoryId(categoryRepo.findById(news.getCategoryId()).get().getCategoryTitle());
 			return mapToNewsList(findById.get());
 		}

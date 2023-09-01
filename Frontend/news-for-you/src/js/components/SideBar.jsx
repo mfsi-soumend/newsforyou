@@ -4,7 +4,7 @@ import CategoryService from "../sevices/categoryService";
 
 const { Sider } = Layout;
 
-function SideBar({ colorBgContainer, onCategoryChange }) {
+function SideBar({ onCategoryChange }) {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
   const onChange = (value) => {
@@ -28,7 +28,12 @@ function SideBar({ colorBgContainer, onCategoryChange }) {
     });
   }, []);
   return (
-    <Sider style={{ background: colorBgContainer }} width={200}>
+    <Sider
+      style={{
+        background: "#fff0",
+      }}
+      width={200}
+    >
       <Card className="filter-card">
         <div className="category-title">Select Category</div>
         <div className="category-filter-wrapper">

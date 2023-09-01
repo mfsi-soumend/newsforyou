@@ -1,4 +1,4 @@
-export const loginUrl = "/api/login";
+export const loginUrl = "/api/user/login";
 export const newsUrl = "/api/news";
 export const categoryUrl = "/api/category";
 export const agencyUrl = "/api/agency";

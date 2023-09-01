@@ -34,4 +34,5 @@ public class Constants {
 	public static final String CATEGORY_SERVER_DOWN = "Category Server Down!! Please Contact Admin..";
 	public static final String AGENCY_FEED_LINK_STARTER = "http://localhost:3000/agency-feed/";
 	public static final String NO_AGENCY_FEED_FOUND = "No Agency Feed Found!!";
+	public static final String AGENCY_UPDATED = "Agency Updated Succesfully";
 }

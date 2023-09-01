@@ -45,6 +45,30 @@ public class AgencyServiceImp implements AgencyService {
 	}
 	
 	@Override
+	public void updateAgency(Agency agencyRequest) {
+		if(agencyRequest.getAgencyName() == null || agencyRequest.getAgencyName().isBlank() ||
+				agencyRequest.getAgencyId() == null || agencyRequest.getAgencyId().isBlank()
+				) {
+			throw new InvalidRequestException(Constants.EMPTY_DATA_ERROR);
+		}
+		Optional<Agency> optionalAgency = agencyRepo.findById(agencyRequest.getAgencyId());
+		if(optionalAgency.isEmpty()) {
+			throw new InvalidRequestException(Constants.NO_AGENCY_FOUND);
+		}
+		if(!agencyRepo.findByAgencyName(agencyRequest.getAgencyName()).isEmpty() && !optionalAgency.get().getAgencyName().equals(agencyRequest.getAgencyName())  ) {
+			throw new InvalidRequestException(Constants.AGENCY_ALREADY_EXSISTS);
+		}
+		try {
+			agencyRepo.save(agencyRequest);
+			log.info("Agency Updated!! - "+agencyRequest.getAgencyName());
+		}
+		catch (Exception e) {
+			throw new InvalidRequestException(e.getMessage());
+		}
+		
+	}
+	
+	@Override
 	public AgencyResponse getAgency(String agencyId) {
 		if(agencyId == null || agencyId.isBlank()) {
 			throw new InvalidRequestException(Constants.EMPTY_DATA_ERROR);

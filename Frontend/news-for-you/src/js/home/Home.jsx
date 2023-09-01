@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, theme } from "antd";
+import { Layout } from "antd";
 import SideBar from "../components/SideBar";
 import News from "../news/News";
 import NewsPage from "../components/NewsPage";
@@ -15,16 +15,15 @@ const Home = () => {
     setSelectedCategories(values);
     navigate("/");
   };
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
   return (
     <Content style={{ padding: "0 50px" }}>
-      <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
-        <SideBar
-          colorBgContainer={colorBgContainer}
-          onCategoryChange={onCategoryChange}
-        />
+      <Layout
+        style={{
+          padding: "24px 0",
+          background: "rgb(245 245 245)",
+        }}
+      >
+        <SideBar onCategoryChange={onCategoryChange} />
         <Content style={{ padding: "0 24px", minHeight: 280 }}>
           {id ? (
             <NewsPage id={id} />

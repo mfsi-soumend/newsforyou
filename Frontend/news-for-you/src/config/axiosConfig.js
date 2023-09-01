@@ -13,11 +13,26 @@ instance.interceptors.request.use(function (config) {
   if (config.url.includes(loginUrl)) {
     return config;
   }
-  const token = localStorage.getItem("NEWS_FOR_YOU_TOKEN");
-  if (token) {
-    config.headers.Authorization = token ? `Bearer ${token}` : "";
-  }
+  // const token = localStorage.getItem("adminUserToken");
+  // if (token) {
+  //   config.headers.Authorization = token ? `Bearer ${token}` : "";
+  // }
   return config;
 });
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (
+      (error.code === "ERR_NETWORK" || error.response.status === 403) &&
+      !window.location.href.endsWith("/login")
+    ) {
+      localStorage.removeItem("adminUserToken");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default instance;

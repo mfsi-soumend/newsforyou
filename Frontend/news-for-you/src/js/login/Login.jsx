@@ -1,14 +1,31 @@
-import { Button, Card, Form, Input } from "antd";
-import React, { useState } from "react";
+import { Button, Card, Form, Input, notification } from "antd";
+import React, { useEffect, useState } from "react";
 import { LoginOutlined } from "@ant-design/icons";
+import UserService from "../sevices/userService";
 
 function Login() {
   const [loginForm] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const login = (values) => {
     setLoading(true);
-    console.log(values);
+    UserService.login(values)
+      .then((res) => {
+        localStorage.setItem("adminUserToken", res.data.data);
+        setLoading(false);
+        window.location.href = "/admin/dashboard";
+      })
+      .catch((err) => {
+        setLoading(false);
+        notification.error({
+          message: "Wrong credentials !! Login Failed ...",
+        });
+      });
   };
+  useEffect(() => {
+    if (localStorage.getItem("adminUserToken")) {
+      window.location.href = "/admin/dashboard";
+    }
+  }, []);
   return (
     <div className="login-page">
       <Card className="login-card">
