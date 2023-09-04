@@ -1,5 +1,5 @@
 import axios from "../../config/axiosConfig";
-import { agencyUrl } from "../../config/constants";
+import { agencyFeedUrl, agencyUrl } from "../../config/constants";
 
 const AgencyService = {
   getAgency: (agencyId) => {
@@ -13,6 +13,15 @@ const AgencyService = {
   },
   updateAgency: (payload) => {
     return axios.put(agencyUrl, payload);
+  },
+  getAllAgencyFeed: () => {
+    return axios.get(agencyFeedUrl + "/all-agency-feed");
+  },
+  createAgencyFeed: (payload) => {
+    return axios.post(agencyFeedUrl, payload);
+  },
+  getAgencyFeed: (id) => {
+    return axios.get(agencyFeedUrl + "/" + id);
   },
 };
 

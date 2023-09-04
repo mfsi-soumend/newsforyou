@@ -77,6 +77,15 @@ public class CategoryServiceImp implements CategoryService {
 				.build();
 	}
 	
+	@Override
+	public CategoryResponse getSingleCategory(String categoryId) {
+		Optional<Category> findById = categoryRepo.findById(categoryId);
+		if(findById.isEmpty()) {
+			throw new InvalidRequestException(Constants.NO_CATEGORY_FOUND);
+		}
+		return mapToCategoryList(findById.get());
+	}
+	
 	private CategoryResponse mapToCategoryList(Category category) {
 		return CategoryResponse.builder()
 				.categoryTitle(category.getCategoryTitle())

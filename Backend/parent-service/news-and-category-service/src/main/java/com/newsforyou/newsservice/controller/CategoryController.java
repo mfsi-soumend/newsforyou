@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.newsforyou.newsservice.configurations.Constants;
 import com.newsforyou.newsservice.dto.CategoryRequest;
+import com.newsforyou.newsservice.dto.CategoryResponse;
 import com.newsforyou.newsservice.dto.CategoryResponseList;
 import com.newsforyou.newsservice.exception.InvalidRequestException;
 import com.newsforyou.newsservice.exception.handler.GlobalExceptionHandler;
@@ -76,5 +77,19 @@ public class CategoryController {
 	@GetMapping("/available/{category-id}")
 	public boolean checkCategoryAvailable(@PathVariable("category-id") String categoryId) {
 		return categoryService.checkCategoryAvailable(categoryId);
+	}
+	
+	@GetMapping("/{category-id}")
+	public ResponseEntity<Object> getSingleCategory(@PathVariable("category-id") String categoryId) {
+		SingleResponse<CategoryResponse> resp = new SingleResponse<>();
+		try {
+			CategoryResponse res = categoryService.getSingleCategory(categoryId);
+			resp.setSuccess(true);
+			resp.setData(res);
+			return resp.generateResponse(HttpStatus.OK);
+		}
+		catch (Exception e) {
+			return ge.handleInvalidRequestException(new InvalidRequestException(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
 	}
 }

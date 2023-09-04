@@ -11,6 +11,9 @@ const CategoryService = {
   updateCategory: (payload) => {
     return axios.put(categoryUrl, payload);
   },
+  getCategory: (categoryId) => {
+    return axios.get(categoryUrl + "/" + categoryId);
+  },
 };
 
 export default CategoryService;

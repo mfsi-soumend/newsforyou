@@ -12,6 +12,7 @@ import FooterBar from "../components/FooterBar";
 import { Layout } from "antd";
 import Login from "../login/Login";
 import Dashboard from "../admin/Dashboard";
+import AgencyFeedPage from "../agencyFeedPage/AgencyFeedPage";
 
 function Routes() {
   return (
@@ -22,6 +23,7 @@ function Routes() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/pageNotFound" element={<PageNotFound />} />
           <Route exact path="/news/:id" element={<Home />} />
+          <Route exact path="/agency-feed/:id" element={<AgencyFeedPage />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/admin/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/pageNotFound" />} />

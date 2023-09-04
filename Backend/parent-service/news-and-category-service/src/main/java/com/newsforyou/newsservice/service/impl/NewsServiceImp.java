@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.newsforyou.newsservice.configurations.Constants;
+import com.newsforyou.newsservice.dto.AgencyFeedNewsRequest;
 import com.newsforyou.newsservice.dto.NewsRequest;
 import com.newsforyou.newsservice.dto.NewsResponse;
 import com.newsforyou.newsservice.dto.NewsResponseList;
@@ -79,6 +80,16 @@ public class NewsServiceImp implements NewsService {
 	public NewsResponseList getAllNews(List<String> categoryIds) {
 		Sort sort = Sort.by(Sort.Direction.DESC, "newsPublishDateTime");
 		List<News> allNews = categoryIds.size()!=0? newsRepo.findByCategoryIdIn(categoryIds, sort):newsRepo.findAll(sort);
+		return NewsResponseList.builder()
+				.totalNewsCount(allNews.size())
+				.newsList(allNews.stream().map(this::mapToNewsList).toList())
+				.build();
+	}
+	
+	@Override
+	public NewsResponseList getAllNewsByAgency(AgencyFeedNewsRequest agencyFeedNewsRequest) {
+		Sort sort = Sort.by(Sort.Direction.DESC, "newsPublishDateTime");
+		List<News> allNews = newsRepo.findByCategoryIdAndAgencyId(agencyFeedNewsRequest.getCategoryId(),agencyFeedNewsRequest.getAgencyId(), sort);
 		return NewsResponseList.builder()
 				.totalNewsCount(allNews.size())
 				.newsList(allNews.stream().map(this::mapToNewsList).toList())

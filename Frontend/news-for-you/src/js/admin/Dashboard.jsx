@@ -8,6 +8,8 @@ import {
   TagsTwoTone,
 } from "@ant-design/icons";
 import Agency from "../components/Agency";
+import AgencyFeed from "../components/AgencyFeed";
+import ManageNews from "../components/ManageNews";
 const { Content } = Layout;
 
 function Dashboard() {
@@ -52,7 +54,7 @@ function Dashboard() {
               </span>
             ),
             key: "agency_feed",
-            children: <div>agency feed</div>,
+            children: <AgencyFeed />,
           },
           {
             label: (
@@ -62,7 +64,7 @@ function Dashboard() {
               </span>
             ),
             key: "news",
-            children: <div>News</div>,
+            children: <ManageNews />,
           },
         ]}
       />

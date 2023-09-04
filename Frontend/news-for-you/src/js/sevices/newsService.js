@@ -11,6 +11,9 @@ const NewsService = {
   getNews: (newsId) => {
     return axios.get(newsUrl + "/" + newsId);
   },
+  getAgencyFeedNews: (payload) => {
+    return axios.put(newsUrl + "/agency-feed", payload);
+  },
 };
 
 export default NewsService;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.newsforyou.newsservice.configurations.Constants;
+import com.newsforyou.newsservice.dto.AgencyFeedNewsRequest;
 import com.newsforyou.newsservice.dto.NewsRequest;
 import com.newsforyou.newsservice.dto.NewsResponse;
 import com.newsforyou.newsservice.dto.NewsResponseList;
@@ -55,6 +56,21 @@ public class NewsController {
 			return ge.handleInvalidRequestException(new InvalidRequestException(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@PutMapping("/agency-feed")
+	public ResponseEntity<Object> getAllNewsByAgency(@RequestBody AgencyFeedNewsRequest agencyFeedNewsRequest) {
+		SingleResponse<NewsResponseList> resp = new SingleResponse<>();
+		try {
+			NewsResponseList res = newsService.getAllNewsByAgency(agencyFeedNewsRequest);
+			resp.setSuccess(true);
+			resp.setData(res);
+			return resp.generateResponse(HttpStatus.OK);
+		}
+		catch (Exception e) {
+			return ge.handleInvalidRequestException(new InvalidRequestException(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@GetMapping("/{news_id}")
 	public ResponseEntity<Object> getNews(@PathVariable("news_id") String newsId) {
 		SingleResponse<NewsResponse> resp = new SingleResponse<>();
