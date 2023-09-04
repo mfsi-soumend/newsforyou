@@ -140,7 +140,7 @@ function Agency() {
                     <div className="agency-update-logo">
                       <Button
                         type="secondary"
-                        className="user-profile"
+                        className="cancel-button"
                         icon={<CloseOutlined style={{ color: "red" }} />}
                         onClick={() => {
                           setSelected(null);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CategoryService from "../sevices/categoryService";
 import { Button, Form, Input, Result, Skeleton, notification } from "antd";
-import { SmileOutlined, SaveOutlined } from "@ant-design/icons";
+import { SmileOutlined, SaveOutlined, CloseOutlined } from "@ant-design/icons";
 
 function getRandomColor() {
   const letters = "0123456789ABCDEF";
@@ -101,7 +101,7 @@ function Category() {
                   <Form
                     form={updateForm}
                     onFinish={updateCategory}
-                    layout="vertical"
+                    style={{ display: "flex", columnGap: "10px" }}
                     requiredMark={false}
                     disabled={updateLoading}
                   >
@@ -119,6 +119,34 @@ function Category() {
                         className="login-input"
                         id={"categoryTitle" + category.categoryId}
                         placeholder="Enter Category Title"
+                      />
+                    </Form.Item>
+                    <Form.Item style={{ margin: "0" }}>
+                      <Button
+                        type="secondary"
+                        htmlType="submit"
+                        shape="circle"
+                        className="user-profile"
+                        icon={<SaveOutlined />}
+                        size={30}
+                        style={{
+                          border: "1px solid #8c8c8c",
+                          marginTop: "0",
+                        }}
+                        loading={updateLoading}
+                      />
+                    </Form.Item>
+                    <Form.Item style={{ margin: "0" }}>
+                      <Button
+                        type="secondary"
+                        className="cancel-button"
+                        shape="circle"
+                        icon={<CloseOutlined style={{ color: "red" }} />}
+                        onClick={() => {
+                          setSelected(null);
+                          updateForm.resetFields();
+                        }}
+                        size={30}
                       />
                     </Form.Item>
                   </Form>
