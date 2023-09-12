@@ -5,34 +5,14 @@ import { useParams } from "react-router-dom";
 import { Divider, Result, Skeleton } from "antd";
 import NewsService from "../sevices/newsService";
 import CategoryService from "../sevices/categoryService";
+import util from "../utils/util";
 
 function AgencyFeedPage() {
   const [agency, setAgency] = useState();
   const [category, setCategory] = useState();
-  const [readMore, setReadMore] = useState(null);
   const [loading, setLoading] = useState(true);
   const [allNews, setAllNews] = useState([]);
   let { id } = useParams();
-
-  const getTime = (time) => {
-    const utcDateTimeString = time;
-    const utcDateTime = new Date(utcDateTimeString);
-
-    // Convert to local date and time
-    const localYear = utcDateTime.getFullYear();
-    const localMonth = utcDateTime.getMonth() + 1; // Months are zero-indexed
-    const localDay = utcDateTime.getDate();
-    const localHours = utcDateTime.getHours();
-    const localMinutes = utcDateTime.getMinutes();
-    const localSeconds = utcDateTime.getSeconds();
-    return `${localYear}-${localMonth.toString().padStart(2, "0")}-${localDay
-      .toString()
-      .padStart(2, "0")} ${localHours
-      .toString()
-      .padStart(2, "0")}:${localMinutes
-      .toString()
-      .padStart(2, "0")}:${localSeconds.toString().padStart(2, "0")}`;
-  };
 
   useEffect(() => {
     AgencyService.getAgencyFeed(id)
@@ -48,7 +28,6 @@ function AgencyFeedPage() {
           agencyId: res.data.data.agencyId,
         };
         NewsService.getAgencyFeedNews(payload).then((res2) => {
-          console.log(res2);
           setAllNews(res2.data.data.newsList);
           setLoading(false);
         });
@@ -103,42 +82,27 @@ function AgencyFeedPage() {
                       {news.newsTitle}
                     </div>
                     <div
-                      className={
-                        readMore !== news.newsId
-                          ? "news-page-description news-description-feed"
-                          : "news-page-description"
-                      }
+                      className="news-page-description"
                       dangerouslySetInnerHTML={{
                         __html: news.newsDescription,
                       }}
                       style={{ maxWidth: "100%" }}
                     />
-
-                    {readMore !== news.newsId ? (
-                      <div
-                        className="read-more"
-                        onClick={() => {
-                          setReadMore(news.newsId);
-                        }}
-                      >
-                        read more
-                      </div>
-                    ) : (
-                      <div
-                        className="read-more"
-                        onClick={() => {
-                          setReadMore(null);
-                        }}
-                      >
-                        read less
-                      </div>
-                    )}
+                    <div
+                      className="read-more"
+                      onClick={() => {
+                        window.open(news.newsLink, "_blank");
+                      }}
+                    >
+                      read more
+                    </div>
 
                     <div
                       className="posted-on"
                       style={{ margin: "30px 0 50px 20px" }}
                     >
-                      Posted On <span>{getTime(news.newsPublishDateTime)}</span>
+                      Posted On{" "}
+                      <span>{util.getTime(news.newsPublishDateTime)}</span>
                     </div>
                     <Divider />
                   </>

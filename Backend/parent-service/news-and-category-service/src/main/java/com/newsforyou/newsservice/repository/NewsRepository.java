@@ -1,6 +1,7 @@
 package com.newsforyou.newsservice.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -11,4 +12,6 @@ public interface NewsRepository extends MongoRepository<News, String> {
 	List<News> findByCategoryIdIn(List<String> categoryIds, Sort sort);
 
 	List<News> findByCategoryIdAndAgencyId(String categoryId, String agencyId, Sort sort);
+
+	Optional<News> findByNewsLink(String newsLink);
 }

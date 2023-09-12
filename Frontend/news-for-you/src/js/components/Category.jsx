@@ -2,15 +2,7 @@ import React, { useEffect, useState } from "react";
 import CategoryService from "../sevices/categoryService";
 import { Button, Form, Input, Result, Skeleton, notification } from "antd";
 import { SmileOutlined, SaveOutlined, CloseOutlined } from "@ant-design/icons";
-
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+import util from "../utils/util";
 
 function Category() {
   const [categories, setCategories] = useState([]);
@@ -86,7 +78,7 @@ function Category() {
             />
           ) : (
             categories.map((category) => {
-              const randomBorderColor = getRandomColor();
+              const randomBorderColor = util.getRandomColor();
               return selected && selected === category.categoryId ? (
                 <div
                   className="category-tag"

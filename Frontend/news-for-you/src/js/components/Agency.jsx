@@ -78,7 +78,7 @@ function Agency() {
     <Skeleton active />
   ) : (
     <div style={{ minHeight: "78vh" }}>
-      <div className="admin-right-section-title">Categories</div>
+      <div className="admin-right-section-title">Agencies</div>
       {allAgency.length === 0 ? (
         <Result
           icon={<SmileOutlined />}

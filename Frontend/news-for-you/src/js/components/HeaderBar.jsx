@@ -16,14 +16,6 @@ function HeaderBar() {
     {
       key: "1",
       label: (
-        <a rel="noopener noreferrer" href="/admin/profile">
-          Profile
-        </a>
-      ),
-    },
-    {
-      key: "2",
-      label: (
         <a
           rel="noopener noreferrer"
           onClick={() => {

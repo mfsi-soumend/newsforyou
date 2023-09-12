@@ -35,4 +35,5 @@ public class Constants {
 	public static final String AGENCY_SERVER_DOWN = "Agency Server Down!! Please Contact Admin..";
 	public static final String NO_NEWS_FOUND = "No News Found !!";
 	public static final String CATEGORY_UPDATED = "Category Successfully Updated !!";
+	public static final String NEWS_DELETED = "News Deleted successfully";
 }
