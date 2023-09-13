@@ -53,6 +53,13 @@ function ManageNews() {
       head: [tableColumns],
       body: tableRows,
       startY: 40,
+      columnStyles: {
+        0: { columnWidth: 50 },
+        1: { columnWidth: 50 },
+        2: { columnWidth: 30 },
+        3: { columnWidth: 30 },
+        4: { columnWidth: 20 },
+      },
     });
 
     doc.save(

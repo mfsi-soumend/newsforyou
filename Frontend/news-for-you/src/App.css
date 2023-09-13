@@ -219,6 +219,9 @@ input.ant-input , .login-input input{
   justify-content: center;
   align-items: center;
   background-color: #f5f5f5;
+  background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/04/Vector-Graphic-Art-Backgrounds-.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 .login-title {
   font-size: 24px;
@@ -231,9 +234,10 @@ input.ant-input , .login-input input{
 .login-card {
   width: 450px;
   padding: 0 20px;
-  box-shadow: 0 0 15px  #dcdcdc;
-  background: #ffffff87 !important;
   border: 2px solid #fff;
+  background: #f0f8ff42;
+  box-shadow: 0 0 15px #0003;
+  backdrop-filter: blur(6px);
 }
 
 .login-button {
