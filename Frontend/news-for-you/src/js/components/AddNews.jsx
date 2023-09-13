@@ -77,7 +77,6 @@ function AddNews({ setAllNews, setNewsCount }) {
       </Button>
       <Modal
         title={<div className="modal-title">Add News from RSS Feed</div>}
-        centered
         open={open}
         footer={false}
         onCancel={() => setOpen(false)}

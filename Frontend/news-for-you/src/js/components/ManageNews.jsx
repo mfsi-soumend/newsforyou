@@ -1,71 +1,15 @@
 import React, { useEffect, useState } from "react";
 import util from "../utils/util";
-import { Button, Space, Table, Tag, notification } from "antd";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
+import { Space, Table, Tag, notification } from "antd";
 import NewsService from "../sevices/newsService";
-import { DownloadOutlined } from "@ant-design/icons";
 import AddNews from "./AddNews";
+import GenerateReport from "./GenerateReport";
 
 function ManageNews() {
   const [allNews, setAllNews] = useState([]);
   const [newsCount, setNewsCount] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [loadingTable, setLoadingTable] = useState(true);
-
-  const downloadPDF = () => {
-    const doc = new jsPDF();
-    const title = "News Report";
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    const titleWidth =
-      (doc.getStringUnitWidth(title) * doc.internal.getFontSize()) /
-      doc.internal.scaleFactor;
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const centerX = (pageWidth - titleWidth) / 2;
-    doc.text(title, centerX, 20);
-    const tableColumns = columns
-      .filter((column) => column.key !== "action")
-      .map((column) => column.title);
-
-    const tableRows = allNews.map((rowData) =>
-      columns
-        .filter((column) => column.key !== "action")
-        .map((column) => {
-          if (column.key !== "tags") {
-            const cellData = rowData[column.dataIndex];
-            const truncatedCellData =
-              cellData.length > 100
-                ? cellData.substring(0, 100) + "..."
-                : cellData;
-
-            return truncatedCellData;
-          } else {
-            return rowData.agencyId + ", " + rowData.categoryId;
-          }
-        })
-    );
-
-    doc.setFontSize(12);
-    doc.setFont("helvetica");
-
-    doc.autoTable({
-      head: [tableColumns],
-      body: tableRows,
-      startY: 40,
-      columnStyles: {
-        0: { columnWidth: 50 },
-        1: { columnWidth: 50 },
-        2: { columnWidth: 30 },
-        3: { columnWidth: 30 },
-        4: { columnWidth: 20 },
-      },
-    });
-
-    doc.save(
-      "news_report_" + new Date().toLocaleString().replace(/:/g, "-") + ".pdf"
-    );
-  };
   const deleteNews = (newsId) => {
     setLoadingTable(true);
     NewsService.deleteNews(newsId)
@@ -187,14 +131,7 @@ function ManageNews() {
         </div>
         <Space className="manage-news-buttons" size={12}>
           <AddNews setAllNews={setAllNews} setNewsCount={setNewsCount} />
-          <Button
-            type="secondary"
-            onClick={downloadPDF}
-            className="download-button"
-            icon={<DownloadOutlined />}
-          >
-            Download as PDF
-          </Button>
+          <GenerateReport allNews={allNews} columns={columns} />
         </Space>
       </div>
 
