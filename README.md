@@ -67,7 +67,7 @@ Time of India   India vs New Zealand: Kyle...          879
 
 ####Technologies / Tools
 
-Java Spring Boot Microservice, Resilience4J, Api gateway,Eureka discovery server, React, MongoDB
+Java Spring Boot Microservice, Resilience4J, Api gateway, Zipkin, Eureka discovery server, React, MongoDB
 
 ####Deliverables Expectations
 
