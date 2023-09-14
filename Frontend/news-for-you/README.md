@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+## News for You
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> **Please go through the document carefully to understand the requirement along with our expectations.**
 
-## Available Scripts
+####Scope of work
 
-In the project directory, you can run:
+Goal to integrate RSS Feeds from leading News agencies and feed only relevant News based on user's preferance. Most of the News agencies feed News based on certain categories. We need to accumulate news from various News agencies, based on the categories defined by us.
 
-### `npm start`
+- Sign-in - with one default user
+  - Initialize: Initialize the data
+    - Category Data: Add few cantegories, euch as Business, Sports, etc
+    - Agency Data: Add Times Of India, Hindustan Times and The Hindu.
+    - Agency Feed Data: Add feed links that maps to Agency and Caregory
+    - News Data: Remove all News data
+  - Fetch News: Fetch and store News reference into local database. RSS Feeds reference:
+    - https://timesofindia.indiatimes.com/rss.cms
+    - https://www.hindustantimes.com/rss/
+    - https://www.thehindu.com/rssfeeds/
+  - Reports: Show on the browser (Mandatory), Export to PDF (Optional)
+    - News Click Count Report (see Reports section below for more details)
+- News (no sign-in required) - will have 2 sections (say left and right panel) on a page, i.e. Category and News
+  - Category: User can select one or multiple categories to filter the News feed. User's category selection needs to be preserved at the browser level, ensuring it loads News from only those categories selected during last use.
+  - News: Shows News - latest first. List should be auto-refreshed or Notifies users, in case new News added to the database. When user clicks a News, it should register that as click-count, without really thinking of differentiating whether its a same user on the same browser.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> You are welcome to choose to use any free HTML/CSS template.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+####Entities / Attributes
 
-### `npm test`
+- user
+  - user_id
+  - name
+  - email (use it as user name for sign-in)
+  - password
+- category
+  - category_id
+  - category_title
+- agency
+  - agency_id
+  - agency_name
+  - agency_logo_path
+- agency_feed
+  - agency_feed_id
+  - agency_feed_url
+  - agency_id
+  - category_id
+- news
+  - news_id
+  - news_title
+  - news_description
+  - news_publish_date_time
+  - news_link (always unique)
+  - click_count
+  - category_id
+  - agency_id
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+####Reports
 
-### `npm run build`
+News Click Count Report (selected date of news published)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+Agency          Ttile                                  # of Click
+Time of India   India vs New Zealand: Kyle...          879
+...
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> Feel free to format the reports as you find appropriate.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+####Technologies / Tools
 
-### `npm run eject`
+React
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+####Deliverables Expectations
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [x] All features are expected to be working
+- [x] Use object oriented approach for the solution with reasonable classes and attributes. Keep it as modular and clean as possible and follow common software practices to include reusability, portability, encapsulation, etc
+- [x] Provide code comments and in code documentation where necessary
+- [x] Provide sufficient amount of unit tests for implementation (framework of your choice)
+- [x] A README describing how to run the program.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Additional notes for candidates taking assignment away from Mindfire office:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [x] Share github project URL, by pushing both API and UI codes
+- [x] Share database schema with sample data as needed.
 
-## Learn More
+####Review Process
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Submitted code will be reviewed internally to assess the quality of the implementation / code.
+Based on review, we may schedule a follow up meeting to do code/design walk through.

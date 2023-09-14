@@ -17,6 +17,9 @@ import com.newsforyou.agencyservice.exception.handler.GlobalExceptionHandler;
 import com.newsforyou.agencyservice.model.SingleResponse;
 import com.newsforyou.agencyservice.service.AgencyFeedService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -28,6 +31,9 @@ public class AgencyFeedController {
 	private final GlobalExceptionHandler ge;
 	
 	@PostMapping
+	@CircuitBreaker(name = "news", fallbackMethod = "fallbackMethod")
+    @TimeLimiter(name = "news")
+    @Retry(name = "news")
 	public ResponseEntity<Object> createAgencyFeed(@RequestBody AgencyFeedRequest agencyFeedRequest) {
 		try {
 			agencyFeedService.createAgencyFeed(agencyFeedRequest);
@@ -40,6 +46,10 @@ public class AgencyFeedController {
 			return ge.handleInvalidRequestException(e, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	public String fallbackMethod(AgencyFeedRequest agencyFeedRequest, RuntimeException runtimeException) {
+        return "Oops! Something went wrong, please retry after some time!";
+    }
 	
 	@GetMapping("/all-agency-feed")
 	public ResponseEntity<Object> getAllAgencyFeed() {

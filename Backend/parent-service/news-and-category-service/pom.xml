@@ -50,6 +50,14 @@
 		    <artifactId>hibernate-validator</artifactId>
 		</dependency>
 		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+		<dependency>
 	        <groupId>com.rometools</groupId>
 	        <artifactId>rome</artifactId>
 	        <version>1.15.0</version>

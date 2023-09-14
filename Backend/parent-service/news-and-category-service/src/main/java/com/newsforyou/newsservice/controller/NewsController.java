@@ -20,6 +20,10 @@ import com.newsforyou.newsservice.exception.InvalidRequestException;
 import com.newsforyou.newsservice.exception.handler.GlobalExceptionHandler;
 import com.newsforyou.newsservice.model.SingleResponse;
 import com.newsforyou.newsservice.service.NewsService;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +37,9 @@ public class NewsController {
 	private final GlobalExceptionHandler ge;
 
 	@PostMapping
+	@CircuitBreaker(name = "agency", fallbackMethod = "fallbackMethod")
+    @TimeLimiter(name = "agency")
+    @Retry(name = "agency")
 	public ResponseEntity<Object> createNews(@RequestBody NewsRequest newsRequest) {
 		try {
 			newsService.createNews(newsRequest);
@@ -44,6 +51,15 @@ public class NewsController {
 		catch(InvalidRequestException e) {
 			return ge.handleInvalidRequestException(e, HttpStatus.BAD_REQUEST);
 		}
+	}
+	public String fallbackMethod(NewsRequest newsRequest, RuntimeException runtimeException) {
+        return "Oops! Something went wrong, please retry after some time!";
+    }
+	public String fallbackMethod(RuntimeException runtimeException) {
+		return "Oops! Something went wrong, please retry after some time!";
+	}
+	public String fallbackMethod(FetchNewsDto fetchNewsDto, RuntimeException runtimeException) {
+		return "Oops! Something went wrong, please retry after some time!";
 	}
 	
 	@PutMapping("/all-news")
@@ -61,6 +77,9 @@ public class NewsController {
 	}
 	
 	@GetMapping("/all-news")
+	@CircuitBreaker(name = "agency", fallbackMethod = "fallbackMethod")
+    @TimeLimiter(name = "agency")
+    @Retry(name = "agency")
 	public ResponseEntity<Object> getAllNewsForTable() {
 		SingleResponse<NewsResponseList> resp = new SingleResponse<>();
 		try {
@@ -121,6 +140,9 @@ public class NewsController {
 		}
 	}
 	@PostMapping("/rss-feed")
+	@CircuitBreaker(name = "agency", fallbackMethod = "fallbackMethod")
+    @TimeLimiter(name = "agency")
+    @Retry(name = "agency")
     public ResponseEntity<Object> fetchNewsFromRssFeed(@RequestBody FetchNewsDto fetchNewsDto) {
 		try {
 			newsService.fetchNewsFromRssFeed(fetchNewsDto);
